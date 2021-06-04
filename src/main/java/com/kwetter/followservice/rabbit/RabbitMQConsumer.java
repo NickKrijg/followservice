@@ -12,7 +12,7 @@ public class RabbitMQConsumer {
     @Autowired
     private FollowService followService;
 
-    @RabbitListener(queuesToDeclare = @Queue(name = RabbitMQConfig.queueName, durable = "false"))
+    @RabbitListener(queuesToDeclare = @Queue(name = RabbitMQConfig.queueName, durable = "true"))
     public void receivedForget(String username) {
         System.out.println("Forget: received " + username);
         followService.deleteAllByUsername(username);
