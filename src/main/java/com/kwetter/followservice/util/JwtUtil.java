@@ -2,6 +2,7 @@ package com.kwetter.followservice.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private String SECRET_KEY = "changekeyandlocation";
+    @Value("${auth.secret}")
+    String SECRET_KEY;
 
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
